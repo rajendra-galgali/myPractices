@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>first</title>
+</head>
+<body>
+	<div ui-view></div>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider',function($stateProvider){
+			$stateProvider
+				.state('home',{
+					url: '/home',
+					views : {
+						"uv1" : {
+							templateUrl : "simple1.html",
+							controller : 'simpleController'
+						},
+						/*"uv2" : {
+							template: "this is second view",
+							controller : "simpleController"
+						}*/
+					},
+					//controller : 'simpleController'
+				})
+				.state('address',{
+					url: '/address',
+					views : {
+						"uv1" : {
+							templateUrl : "simple.html",
+							controller : 'simpleController'
+						},
+						/*"uv2" : {
+							templateUrl: "simple1.html",
+							controller : "simpleController"
+						}*/
+					},
+					//controller : 'simpleController'
+				})
+		}]);
+		app.controller('simpleController',['$scope',function($scope){
+			console.log("rajendra galgali");
+			$scope.a =10;
+			$scope.b = 20;
+			$scope.sum = $scope.a + $scope.b;
+		}]);
+	</script>
+
+	<a href="#!/home">home</a>
+	 <a ui-sref="home">State 1</a>
+	 <a ui-sref="address">State 2</a>
+	<div ui-view='uv1'></div>
+	<div ui-view='uv2'></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app='simpleApp'>
+<head>
+	<title>sample example of services</title>
+</head>
+<body ng-controller='simpleController'>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		
+		function sampleController(s, i) {
+			let http = i.get('$http');
+			let log = i.get('$log');
+			let myService = i.get('simpleServices');
+			
+			http.get('./simpleJSON.json')
+				.then(function(dataResponse){
+					s.userData = dataResponse.data.userData;
+				},function(err){
+					log.error(err.status + " " + err.statusText)
+				});
+			myService.getData(function cb(responseData) {
+				console.log(responseData);
+			});
+		}
+
+		function myService(http){
+			let services = {};
+			services.getData = function(cb){
+				http.get('./simpleJSON.json')
+					.then(function(responseData){
+					cb(responseData);
+				},function(err){
+					cb(err);
+				})
+			} 
+			return services;
+		}
+
+		sampleController.$inject = ['$scope', '$injector'];
+		myService.$inject = ['$http'];
+
+		let app = angular.module('simpleApp',[]);
+		app.controller('simpleController',sampleController);
+		app.factory('simpleServices',myService);
+	</script>
+</body>
+</html>

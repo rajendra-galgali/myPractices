@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>directive</title>
+</head>
+<body>
+	<div>
+		this is html
+		<div simple-directive>
+			this is in side div 
+		</div>
+	</div><br/><hr/>
+	<div simple-directive1>
+		rajendra
+	</div>
+
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('firstModule',[])
+	.controller('firstController',[function(){
+		console.log("controller");
+	}])
+	.directive('simpleDirective', function(){
+		return {
+			transclude : true,
+			template : "<div ng-transclude></div> <div> this is in directive </div>"
+		}
+	})
+	.directive('simpleDirective1', function(){
+		return {
+			transclude : true,
+			template : "<div id='simpless'></div> <div> this is in directive </div>",
+			/*link : function(scope, iElement, iAttrs,controller, transclude){
+				var containt = transclude();
+				console.log(iElement.find('#simpless').append('galgali'));
+				iElement.find('#simpless').append('galgali')
+			}*/
+			controller : function($scope, $element, $attrs, $transclude){
+				console.log($transclude);
+				var containt = $transclude();
+				$element.find('#simpless').append(containt);
+			}
+		}
+	})
+	angular.bootstrap(document.documentElement,['firstModule']);
+</script>
+</body>
+</html>

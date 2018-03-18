@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title>broad cast</title>
+</head>
+<body>
+	<div ng-controller='firstController'>
+		<button ng-click='broad()'>broad cast</button>
+		<div ng-controller='scondController'>
+			<div ng-controller='thirdController'>
+				<div ng-controller='fourthController'>
+					<button ng-click='getemit()'>emit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	let app = angular.module('myApp',[]);
+	app.controller('firstController',['$scope','$rootScope',function($scope, $rootScope){
+		console.log("first controller");
+		$scope.$on('simple1',function(err,data){
+			console.log('emit in scope 1st  controller',data);
+		})
+		$rootScope.$on('simple2',function(err,data){
+			console.log('emit in root scope 1th controller',data);
+		})
+		$scope.broad = function(){
+			$rootScope.$broadcast('simple1',{name:'galgali'});
+		}
+	
+	}]);
+	app.controller('scondController',['$scope','$rootScope',function($scope,$rootScope){
+		console.log("2 controller");
+		$rootScope.$on('simple1',function(err,data){
+			console.log('emit in root scope 2nd controller',data);
+		})
+		$scope.$on('simple1',function(err,data){
+			console.log('emit in scope 2nd controller',data);
+		})
+
+	}]);
+	app.controller('thirdController',['$scope','$rootScope',function($scope,$rootScope){
+		console.log("3 controller");
+		$scope.$on('simple1',function(err,data){
+			console.log('emit in scope 3rd controller',data);
+		})
+		$rootScope.$on('simple1',function(err,data){
+			console.log('emit in root scope 3rd controller',data);
+		})
+	}]);
+	app.controller('fourthController',['$scope','$rootScope',function($scope,$rootScope){
+		console.log("4 controller");
+		$scope.$on('simple1',function(err,data){
+			console.log('emit in scope 4th controller',data);
+		})
+		$rootScope.$on('simple1',function(err,data){
+			console.log('emit in root scope 4th controller',data);
+		})
+		$scope.getemit = function(){
+			$scope.$emit('simple1',{'name':'rajendra'})
+		}
+	}])
+</script>
+</body>
+</html>

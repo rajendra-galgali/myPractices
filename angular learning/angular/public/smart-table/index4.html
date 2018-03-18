@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="firstModule">
+<head>
+	<title>smart table</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body >
+	<div ng-controller="sortCtrl">
+		<style type="text/css">
+			.st-sort-ascent:before {
+    content: '\25B2';
+  }
+
+  .st-sort-descent:before {
+    content: '\25BC';
+  }
+		</style>
+		<form>
+	<label for="predicate">selected predicate:</label>
+	<select class="form-control" id="predicate" ng-model="selectedPredicate" ng-options="predicate for predicate in predicates"></select>
+</form>
+<table st-table="rowCollection" class="table table-striped">
+	<thead>
+	<tr>
+		<th st-sort="firstName">first name</th>
+		<th st-sort="lastName">last name</th>
+		<th st-sort="birthDate">birth date</th>
+		<th st-sort="balance">balance</th>
+		<th>email</th>
+	</tr>
+	<tr>
+		<th>
+			<input st-search="firstName" placeholder="search for firstname" class="input-sm form-control" type="search"/>
+		</th>
+		<th colspan="3">
+			<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+		</th>
+		<th>
+			<input st-search="{{selectedPredicate}}" placeholder="bound predicate" class="input-sm form-control" type="search"/>
+		</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in rowCollection">
+		<td>{{row.firstName | uppercase}}</td>
+		<td>{{row.lastName}}</td>
+		<td>{{row.birthDate | date}}</td>
+		<td>{{row.balance | currency}}</td>
+		<td><a ng-href="mailto:{{row.email}}">email</a></td>
+	</tr>
+	</tbody>
+	<tfoot>
+			<tr>
+				<td colspan="5" class="text-center">
+					<div st-pagination="" st-items-by-page="2" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+</table>
+
+	</div>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-smart-table/dist/smart-table.min.js"></script>
+	<script type="text/javascript">
+		angular.module('firstModule',['smart-table'])
+		.controller('sortCtrl', ['$scope', '$filter', function (scope, filter) {
+			scope.rowCollection = [
+        {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
+        {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
+        {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
+    ];
+
+    scope.predicates = ['firstName', 'lastName', 'birthDate', 'balance', 'email'];
+    scope.selectedPredicate = scope.predicates[0];
+}]);
+</script>
+</body>
+</html>

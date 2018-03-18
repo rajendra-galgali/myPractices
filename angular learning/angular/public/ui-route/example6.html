@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>first</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+			$stateProvider
+				.state('home',{
+					url: '/',
+					views : {
+						"uv1" : {
+							template : "this is home page"
+						}
+					}
+				})
+
+				.state('address',{
+					url: '/address',
+					views : {
+						"uv1" : {
+							templateUrl : "simple.html",
+							controller : 'simpleController'
+						}
+					}
+				})
+				.state('about',{
+					url: '/about',
+					views : {
+						"uv1" : {
+							templateUrl : "simple1.html",
+							controller : 'simpleController'
+						}
+					}
+				})
+				$urlRouterProvider.otherwise('/');
+		}]);
+		app.controller('simpleController',['$scope',function($scope){
+			console.log("rajendra galgali");
+			$scope.a =10;
+			$scope.b = 20;
+			$scope.sum = $scope.a + $scope.b;
+			$scope.mul = $scope.a * $scope.b;
+		}]);
+	</script>
+
+	<!-- <a href="#!/home">home</a>
+	 <a ui-sref="home">State 1</a>
+	 <a ui-sref="address">State 2</a>
+	<div ui-view='uv1'></div>
+	<div ui-view='uv2'></div> -->
+	<div class="row">
+		<div class="col-md-12 well">
+			<strong>Rajendra</strong> | <a ui-sref="home">Home</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 well">
+			<ul>
+				<li><a ui-sref="address">Address</a></li>
+				<li><a ui-sref="about">About</a></li>
+			</ul>
+		</div>
+		<div class="col-md-9 well">
+			<div ui-view='uv1'></div>
+		</div>
+	</div>
+</body>
+</html>

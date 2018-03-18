@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title>digest</title>
+</head>
+<body ng-controller='myController'>
+	<div>
+		a : <input type="text" name="a" ng-model='a'>
+	</div>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	let app = angular.module('myApp',[]);
+	app.controller('myController',function($scope){
+		$scope.a = 10;
+		$scope.b = 20;
+		$scope.c = 30;
+		$scope.d = 40;
+
+		$scope.$watch('a', function(oldValue, newValue){
+			console.log('a--' ,newValue);
+			$scope.d += 1;
+			
+		})
+		$scope.$watch('b',function(oldValue, newValue){
+			if($scope.b > 0){
+				$scope.a = $scope.a + 1;
+			}
+		})
+		$scope.$watch('c',function(oldValue, newValue){
+			if($scope.c > 0){
+				$scope.a = $scope.a + 1;
+				$scope.b = $scope.a + 1;
+			}
+		})
+		$scope.$watch('d',function(oldValue, newValue){
+			if($scope.d > 0) {
+				$scope.a = $scope.a + 1;
+				$scope.b = $scope.a + 1;
+				$scope.c = $scope.a + 1;
+			}
+		})
+	})
+</script>
+</body>
+</html>

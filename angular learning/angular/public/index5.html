@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+<br/>
+<div class="text-center text-uppercase bg-danger">
+    <p class='lead'>Registration Form</p>
+</div>
+<form class="bg-success form-horizontal" name='reg' ng-submit='submit(modal)' novalidate><br/>
+    <div class="container">
+        <div class="form-group">
+            <label for='name' class="col-md-2 control-label">Name<span style="color: red">*</span></label>
+            <div class="col-md-10">
+                <input type="text" name="name" ng-model='modal.name' class="form-control" placeholder="Enter your name"
+                       required/>
+                <span ng-show='reg.name.$error.required' class="text-danger">
+									Enter name
+								</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for='userName' class="col-md-2 control-label">User Name<span style="color: red">*</span></label>
+            <div class="col-md-10">
+                <input type="text" name="userName" class="form-control" ng-model='modal.userName'
+                       placeholder="Enter user name" required/>
+                <span ng-show='reg.userName.$error.required' class="text-danger">
+									Enter user name
+								</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Password<span style="color: red">*</span></label>
+            <div class="col-md-10">
+                <input type="Password" name="password" class="form-control" name="password" ng-model="modal.password"
+                       ng-pattern='/^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/' required/>
+                <span ng-show="reg.password.$error.required" class="text-danger">Enter password</span>
+                <span ng-show="reg.password.$error.pattern" class="text-danger">Password must contail special charecter and number and minimum 8 length of charector</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">E-mail</label>
+            <div class="col-md-10">
+                <input type="email" name="email" class="form-control" ng-model="modal.email"
+                       ng-pattern="/^[a-zA-Z0-9]+@.*\.[a-zA-Z]{2,5}$/">
+                <span ng-show="reg.email.$error.pattern" class="text-danger">
+									Invalid E-mail (ex - raj@gmail.com)
+								</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Gender<span style="color: red">*</span></label>
+            <div class="col-md-10">
+                <input class="radio-inline" type="radio" name="gender" value="M" ng-model="module.gender" required/>
+                Male
+                <input class="radio-inline" type="radio" name="gender" value="F" ng-model="module.gender" required/>
+                Female
+                <span ng-show='reg.gender.$error.required' class="text-danger">
+									select gender
+								</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Contry<span class="text-danger">*</span></label>
+            <div class="col-md-10">
+                <select class="form-control"
+                        name="country"
+                        ng-model='modal.country'
+                        ng-options="country.code as country.name for country in countries"
+                        required>
+                    <option value="">{{"Select"}}</option>
+                </select>
+                <span class="text-danger" ng-show='reg.country.$error.required'>
+									select country
+								</span>
+            </div>
+        </div>
+        <div class="form-group">{{selectIntereste}}---{{selected}}
+            <label class="col-md-2 control-label">Interested in <span class="text-danger">*</span></label>
+            <div class="col-md-10">
+
+                <span ng-repeat='a in intereste' class="list-group-item">
+                        <label><input type="checkbox"
+                                      ng-model="selected"
+                                      name = "interest"
+                                      ng-click="checkInterest(a)"
+
+                                      ng-required="selectIntereste.length == 0"
+                                      class="checkbox-inline"/>
+                            {{a}}</label>
+                      </span>
+            </div>
+        </div>
+        {{reg.interest}}
+        <div class="row">
+            <div class="col-md-offset-2">
+                <button class="btn btn-warning btn-sm">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+    angular.module('firstModule', [])
+        .config([function () {
+            console.log("config");
+        }])
+        .run([function () {
+            console.log("run");
+        }])
+        .controller('firstController', ['$scope', function ($scope) {
+            console.log("first controller");
+            $scope.countries = [{
+                code: "IND",
+                name: "India"
+            }, {
+                code: "SA",
+                name: "South Aftrica"
+            }, {
+                code: "AUS",
+                name: "Austrelia"
+            }];
+            $scope.intereste = ['Playing',"Singing","Dancing"];
+            $scope.selectIntereste = [];
+            $scope.selected;
+            $scope.checkInterest = function (con) {
+                var index = $scope.selectIntereste.indexOf(con);
+                console.log(index);
+                if(index == -1) {
+                    $scope.selectIntereste.push(con);
+                }
+                else{
+                    $scope.selectIntereste.splice(index, 1);
+                }
+            };
+            $scope.modal = {};
+            $scope.submit = function (data) {
+                console.log('form', data);
+            }
+        }]);
+
+    angular.bootstrap(document.documentElement, ['firstModule'], {
+        strictDi: true
+    });
+</script>
+</body>
+</html>

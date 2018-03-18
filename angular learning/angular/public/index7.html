@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+
+    {{a}}<br/>
+<div simple-directive></div><br/>
+<div>
+    asdasd {{a}}
+</div>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+
+<script type="text/javascript">
+    angular.module('firstModule', [])
+        .controller('firstController', ['$scope', function ($scope) {
+            $scope.a = "this is Rajendra Galgali";
+        }])
+        .directive('simpleDirective',function(){
+            return  {
+                restrict : 'A',
+                replace : true,
+                template : '<strong> {{a}}  </strong>',
+                controller : ['$scope',function ($scope){
+                    $scope.a = "Galgali";
+                }]
+            }
+        })
+
+    angular.bootstrap(document.documentElement, ['firstModule'], {
+        strictDi: true
+    });
+</script>
+</body>
+</html>

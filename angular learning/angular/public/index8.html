@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+    In controller : a = {{a}}  b = {{b}}  c = {{c}} d = {{d}} <hr/>
+
+<div simple-directive a="{{a}}", b="Bye"></div><br/>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+
+<script type="text/javascript">
+    angular.module('firstModule', [])
+        .controller('firstController', ['$scope', function ($scope) {
+            $scope.a = {
+                "name" : "rajendra"
+            };
+            console.log("in controller :"+ typeof $scope.a);
+            $scope.b = 20;
+            $scope.c = 30;
+            $scope.d = 40;
+        }])
+        .directive('simpleDirective',function(){
+            return  {
+                template : '<strong> a = {{c}}  b = {{d}} e = {{e}}</strong>',
+                scope : {
+                    c : '@a',
+                    d : '@b'
+                },
+                controller : ['$scope',function($scope){
+                    var c = JSON.parse($scope.c);
+                    $scope.e = c.name;
+                    console.log("in directive :", c.name);
+                }]
+            }
+        })
+
+    angular.bootstrap(document.documentElement, ['firstModule'], {
+        strictDi: true
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>basic1</title>
+</head>
+<body ng-controller = 'firstController'>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('firstModule',[])
+	.config([function(){
+		console.log("config");
+	}])
+	.run([function(){
+		console.log("run");
+	}])
+	.controller('firstController',[function(){
+		console.log("controller");
+	}])
+	angular.bootstrap(document.documentElement,['firstModule']);
+</script>
+</body>
+</html>

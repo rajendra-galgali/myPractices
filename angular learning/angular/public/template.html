@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>template</title>
+</head>
+<body>
+	<div ng-repeat = "list in data track by $index">
+	<div class="col-md-3">
+		<div class="panel">
+		<div  ng-class='(list.age > 23)? "panel-primary" : "panel-danger"'>
+			<div class="panel-heading">{{list.name}}</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4"><strong>Name</strong></div>
+				<div class="col-md-7">{{list.name}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><strong>Age</strong></div>
+				<div class="col-md-7">{{list.age}}</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4"><strong>Location</strong></div>
+				<div class="col-md-7">{{list.location}}</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title>rajendra</title>
+</head>
+<body>
+	<div ng-view></div>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+<script type="text/javascript">
+	let app = angular.module('myApp',['ngRoute']);
+	app.config(['$routeProvider',function($routeProvider){
+		$routeProvider
+			.when('/rajendra',{
+				template:"rajendra galgali"
+			})
+			.otherwise({
+				template : "bandila"
+			})
+	}])
+</script>
+</body>
+</html>

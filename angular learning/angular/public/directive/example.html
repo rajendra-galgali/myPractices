@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+
+    <div template-directive a="data" c="textColor" ng-if='textColor'></div><br/>
+</div>
+
+<script type="text/javascript">
+    angular.module('firstModule', [])
+    .controller('firstController', ['$scope','MyService', function ($scope,MyService) {
+
+        var getC = function(){
+            console.log("hhhhhhhhhhhhhh");
+            MyService.getOpco().then(function(data){
+                console.log("iiiiiiii");
+                $scope.textColor = {
+                    "color" : data.data.color
+                };
+                console.log($scope.textColor);
+                
+                $scope.data = [{
+                    "name" : "rajendra",
+                    "age" : "25",
+                    "location" : "Bagalkot"
+                },{
+                    "name" : "mahesh",
+                    "age" : "26",
+                    "location" : "Bangaluru"
+                },{
+                    "name" : "basha",
+                    "age" : "24",
+                    "location" : "gulbarga"
+                },{
+                    "name" : "vinaya",
+                    "age" : "23",
+                    "location" : "jamkhandi"
+                },{
+                    "name" : "amit",
+                    "age" : "23",
+                    "location" : "deli"
+                }];
+                console.log($scope.data);
+            })
+        }
+        }])
+    .directive('templateDirective',function($interpolate){
+        return  {
+            templateUrl : '../table.html',
+            scope : {
+                userList : '=a',
+                color : '=c'                 
+            },
+            transclude : true,
+            controller: function($scope, $element, $attrs){
+              $scope.textColor = $interpolate($attrs.c)($scope);
+              console.log("controller :"+$scope.color);
+
+          },
+          compile : function(tEle, tAttrs){
+
+            return {
+                pre : function(scope, ielement, iattr){
+
+                },
+                post : function($scope, ielement, iattr){
+                    console.log("post :",iattr.c);
+                    console.log("post :",$scope.color);
+                    ielement.css('color','red');
+                }
+            }
+        }
+    }
+})
+    .service('MyService',function ($q,$http) {
+        var defer = $q.defer();
+        this.getOpco = function (opco) {
+            $http.get('opco').then(function (data) {
+                defer.resolve(data.data);
+            },function (err) {
+                defer.reject(err)
+            });
+            return defer.promise;
+        };
+    })
+
+    angular.bootstrap(document.documentElement, ['firstModule']);
+</script>
+</body>
+</html>

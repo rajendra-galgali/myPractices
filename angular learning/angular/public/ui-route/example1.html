@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>first</title>
+</head>
+<body>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider',function($stateProvider){
+			$stateProvider
+				.state('home',{
+					url: '/home',
+					template: "<h1> rajendra </h1>"
+				})
+		}])
+	</script>
+
+	<a href="#!/home">home</a>
+	 <a ui-sref="home">State 1</a>
+	<div ui-view></div>
+</body>
+</html>

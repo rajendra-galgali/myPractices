@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+
+<div simple-directive a="data"></div><br/>
+<div template-directive a="data"></div><br/>
+</div>
+
+<script type="text/javascript">
+    angular.module('firstModule', [])
+        .controller('firstController', ['$scope', function ($scope) {
+            $scope.data = [{
+                "name" : "rajendra",
+                "age" : "25",
+                "location" : "Bagalkot"
+            },{
+                "name" : "mahesh",
+                "age" : "26",
+                "location" : "Bangaluru"
+            },{
+                "name" : "basha",
+                "age" : "24",
+                "location" : "gulbarga"
+            },{
+                "name" : "vinaya",
+                "age" : "23",
+                "location" : "jamkhandi"
+            },{
+                "name" : "amit",
+                "age" : "23",
+                "location" : "deli"
+            }]
+        }])
+        .directive('simpleDirective',function(){
+            return  {
+                templateUrl : 'table.html',
+                scope : {
+                    data : '=a'
+                },
+                controller: ['$scope',function($scope){
+                    $scope.userList = angular.copy($scope.data);
+                    $scope.selectedOrder = 'A';
+                    $scope.filterBy = function(filter){
+                        if($scope.selectedOrder === 'D'){
+                            $scope.filter = '-'+filter;
+                        }else{
+                            $scope.filter = filter;
+                        }
+                    }
+                     $scope.position = 0;
+                     $scope.NumberOfDataPerPage = 2;
+                     $scope.numberOfPage = Math.ceil($scope.data.length / $scope.NumberOfDataPerPage) ;
+                     var getPagination = function(){
+                        $scope.user = angular.copy($scope.data);
+                    $scope.pageData = $scope.user.splice($scope.position,$scope.NumberOfDataPerPage);
+                    $scope.currentPage = $scope.position == 0 ? 1 : ($scope.position/$scope.NumberOfDataPerPage)+1
+                     }
+                     getPagination();
+                     $scope.next = function(pos){
+                        $scope.position = pos;
+                        getPagination();
+                     }
+
+                     $scope.privous = function(pos){
+                        $scope.position = pos;
+                        getPagination();
+                     }
+                }]
+            }
+        })
+         .directive('templateDirective',function(){
+            return  {
+                templateUrl : 'template.html',
+                scope : {
+                    data : '=a'                  
+
+                },
+                controller: ['$scope',function($scope){
+            
+                }]
+            }
+        })
+
+    angular.bootstrap(document.documentElement, ['firstModule'], {
+        strictDi: true
+    });
+</script>
+</body>
+</html>

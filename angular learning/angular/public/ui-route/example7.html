@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>first</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller="mainController">
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+			$stateProvider
+				.state('home',{
+					url: '/',
+					views : {
+						"uv1" : {
+							template : "this is home page"
+						}
+					}
+				})
+
+				.state('address',{
+					url: '/address',
+					views : {
+						"uv1" : {
+							templateUrl : "simple.html",
+							controller : 'simpleController'
+						}
+					}
+				})
+				.state('about',{
+					url: '/about',
+					permission : true,
+					views : {
+						"uv1" : {
+							templateUrl : "simple1.html",
+							controller : 'simpleController'
+						}
+					}
+				})
+				$urlRouterProvider.otherwise('/');
+		}]);
+		app.controller('simpleController',['$scope','$state',function($scope,$state){
+			console.log("rajendra galgali",$state);
+			$scope.permission = $state.current.permission?$state.current.permission:true;
+			$scope.a =10;
+			$scope.b = 20;
+			$scope.sum = $scope.a + $scope.b;
+			$scope.mul = $scope.a * $scope.b;
+		}]);
+		app.controller('mainController',['$state','$scope',function($state,$scope){
+			console.log("main controller",$state);
+		}])
+	</script>
+
+	<div class="row">
+		<div class="col-md-12 well" style="height: 50px">
+			<strong>Rajendra</strong> | <a ui-sref="home">Home</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 well" style="height: 520px; padding-top: 5px">
+			<ul>
+				<li ><a ui-sref="address">Address</a></li>
+				<li><a ui-sref="about">About</a></li>
+			</ul>
+		</div>
+		<div class="col-md-9 well" style="height: 520px">
+			<div ui-view='uv1'></div>
+		</div>
+	</div>
+</body>
+</html>

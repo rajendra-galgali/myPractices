@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>first</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script type="text/javascript">
+		let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+			$stateProvider
+				.state('home',{
+					url: '/',
+					views : {
+						"uv1" : {
+							template : "this is home page"
+						}
+					}
+				})
+
+				.state('add',{
+					url: '/add/:a/:b',
+					views : {
+						"uv1" : {
+							templateUrl : "simple.html",
+							controller : 'simpleController'
+						}
+					}
+				})
+				$urlRouterProvider.otherwise('/');
+		}]);
+		app.controller('simpleController',['$scope','$stateParams',function($scope,$stateParams){
+			console.log("rajend",$stateParams);
+			$scope.a =$stateParams.a - 0;
+			$scope.b = $stateParams.b - 0 ;
+			$scope.sum = $scope.a + $scope.b;
+			$scope.mul = $scope.a * $scope.b;
+		}]);
+	</script>
+
+	<div class="row">
+		<div class="col-md-12 well" style="height: 50px">
+			<strong>Rajendra</strong> | <a ui-sref="home">Home</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 well" style="height: 520px; padding-top: 5px">
+			<strong> From ui-sref</strong>
+			<ul>
+				<li ><a ui-sref="add({a:10,b:20})">Add</a></li>
+			</ul> <br/>
+			<strong> From href</strong>
+			<ul>
+				<li ><a href="#!/add/10/20" >Add</a></li>
+			</ul>
+		</div>
+		<div class="col-md-9 well" style="height: 520px">
+			<div ui-view='uv1'></div>
+		</div>
+	</div>
+</body>
+</html>

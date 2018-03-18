@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title>parent</title>
+</head>
+<body>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript">
+	let app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider',function($stateProvider){
+		$stateProvider
+		
+			.state('emp',{
+				url : '/emplypyee',
+				template : '<br/><div>empppp</div>'
+			})
+			.state('emp.list',{
+				url:'/list',
+				template : 'list',
+				//parent : 'emp'
+			})
+	}])
+</script>
+<a href="" ui-sref='emp'>emp</a>
+<a href="" ui-sref='emp.list'>list</a>
+<div ui-view></div>
+</body>
+</html>

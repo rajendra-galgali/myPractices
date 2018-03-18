@@ -1,0 +1,23 @@
+<div class="container">
+	<div>
+		<table  class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Age</th>
+					<th >Location</th>
+				</tr>
+			</thead>
+			<tbody >
+				<tr ng-repeat="list in pageData">
+					<td>{{list.name}}</td>
+					<td>{{list.age}}</td>
+					<td>{{list.location}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<span ng-repeat='page in pages'>
+		<button class="btn btn-xs" ng-click="getPagination(page-1)"><strong>{{page}}</strong></button>
+	</span>
+</div>

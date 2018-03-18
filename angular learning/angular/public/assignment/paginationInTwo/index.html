@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>basic1</title>
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller='firstController'>
+    <div ng-if="dataLoad" table-directive pagination="true" search="true" data="data"  start="{{startFrom}}" recods-per-page="{{numberOfRecordsPerPage}}">
+    </div>
+    <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./pagination.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="firstModule">
+<head>
+	<title>smart table</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller="firstController">
+	<div class="container">
+		<div class="row" style="padding-top: 10px">
+			<table st-table="rowCollection"  class="table table-striped">
+				<thead>
+					<tr>
+						<th>first name</th>
+						<th>last name</th>
+						<th>birth date</th>
+						<th>balance</th>
+						<th>email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in rowCollection">
+						<td>{{row.firstName}}</td>
+						<td>{{row.lastName}}</td>
+						<td>{{row.birthDate}}</td>
+						<td>{{row.balance}}</td>
+						<td>{{row.email}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/lib/angular-smart-table/dist/smart-table.min.js"></script>
+	<script type="text/javascript">
+		angular.module('firstModule', ['smart-table'])
+		.controller('firstController', ['$scope', function ($scope) {
+			$scope.rowCollection = [
+        {firstName: 'Laurent', lastName: 'Renard', birthDate: new Date('1987-05-21'), balance: 102, email: 'whatever@gmail.com'},
+        {firstName: 'Blandine', lastName: 'Faivre', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'oufblandou@gmail.com'},
+        {firstName: 'Francoise', lastName: 'Frere', birthDate: new Date('1955-08-27'), balance: 42343, email: 'raymondef@gmail.com'}
+    	];
+		}])
+	</script>
+</body>
+</html>

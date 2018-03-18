@@ -1,0 +1,35 @@
+[{
+        "name" : "rajendra",
+        "age" : "25",
+        "location" : "Bagalkot"
+    },{
+        "name" : "mahesh",
+        "age" : "26",
+        "location" : "Bangaluru",
+        "userName" : "rajendra",
+        "monika":"adasd"
+    },{
+        "name" : "basha",
+        "age" : "24",
+        "location" : "gulbarga",
+        "gender" : "male"
+    },{
+        "name" : "vinaya",
+        "age" : "23",
+        "location" : "jamkhandi",
+        "mahesh" : "rajendra"
+    },{
+        "name" : "amit",
+        "age" : "23",
+        "location" : "deli"
+    },{
+        "name" : "galgali",
+        "age" : "25",
+        "location" : "mumbai",
+        "email" : "rajendra"
+    },{
+        "name" : "shrikant",
+        "age" : "29",
+        "location" : "pune",
+        "dasd" : "czcsd"
+    }]

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app=function>
+<head>
+	<title>function</title>
+</head>
+<body ng-controller='functionController'>
+	<div simple-dir data = "data"></div>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('function',[])
+		.controller('functionController',['$scope',function(scope){
+			scope.data = {
+				'fun' : function(){
+					console.log("rajendra galgali");
+				}
+			};
+		}])
+		.directive('simpleDir',function(){
+			return {
+				scope : {
+					data : '='
+				},
+				controller :  function($scope){
+					$scope.data.fun();
+				}
+			}
+		})
+</script>
+</body>
+</html>

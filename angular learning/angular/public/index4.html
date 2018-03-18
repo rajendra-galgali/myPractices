@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>basic1</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller = 'firstController'>
+	<div class="container">
+		rajendra
+		<div class="row">
+			<div class="col-md-4">
+				11111111111111
+			</div>
+			<div class="col-md-4">
+				22222222222222
+			</div>
+			<div class="col-md-4">
+				33333333333333
+			</div>
+		</div>
+		 <div class="clearfix visible-xs-block">
+		 	asdasdasdadsasd
+		 </div>
+		 <div class="wrapper"  style="word-wrap: break-word;">
+		 	<div class="content-main">aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa
+		 	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.asdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss11111111111111111111111111111111111111111111111111
+		 	sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss.aaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaa</div>
+		 	<div class="content-secondary">.bbbbbbbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbb bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.asdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss11111111111111111111111111111111111111111111111111
+		 	sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss.</div>
+		 </div>
+		 <div>
+		 	<p class="lead">qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</p>
+		 </div>
+
+		 <p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No wrap text.</p>
+
+<p class="text-lowercase">Lowercased text.</p>
+<p class="text-uppercase">Uppercased text.</p>
+<p class="text-capitalize">Capitalized text.</p>
+</div>
+	</div>
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('firstModule',[])
+	.config([function(){
+		console.log("config");
+	}])
+	.run([function(){
+		console.log("run");
+	}])
+	.controller('firstController',['$scope',function(s){
+		console.log("first controller");
+	}])
+	
+	angular.bootstrap(document.documentElement,['firstModule'],{
+		strictDi : true
+	});
+</script>
+</body>
+</html>

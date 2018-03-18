@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>basic1</title>
+</head>
+<body >
+	<div ng-controller = 'firstController'>
+		{{a}}
+	<p ng-bind="a"></p>
+	</div>
+	<hr/>
+	<div ng-controller='secondController'>
+	</div>
+	
+	<input type="text" ng-model='name'/> {{name}}
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('firstModule',[])
+	.config([function(){
+		console.log("config");
+	}])
+	.run([function(){
+		console.log("run");
+	}])
+	.controller('firstController',['$scope',function(s){
+		console.log("first controller");
+		s.a = 'rajendra galgali'
+	}])
+	angular.module('secondModule',['firstModule'])
+	.controller('secondController',function(){
+		console.log('second Controller');
+	})
+	angular.bootstrap(document.documentElement,['secondModule'],{
+		strictDi : true
+	});
+</script>
+</body>
+</html>
