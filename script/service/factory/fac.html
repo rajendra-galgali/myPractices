@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="factoryModule">
+<div ng-controller="factoryController">
+    a:<input type="text"  name="a" ng-model="a" />{{a}}
+    b:<input type="text"  name="b" ng-model="b" />{{b}}
+    <button ng-click="add()">cal</button>
+    sum: {{sum1}}
+</div>
+
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+<script type="text/javascript" src="factory1.js"></script>
+
+</body>
+</html>

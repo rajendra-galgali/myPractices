@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyApp</title>	
+</head>
+<body>
+	<div ng-controller="myAppController">
+
+		{{a}}
+
+		<div ng-controller="oneController">
+			{{a}}
+		</div>
+
+		{{a}}
+
+	</div>
+
+
+
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('myApp',[])
+		.controller('myAppController', ['$scope', function($scope){
+			console.log('myAppController');
+			$scope.a = 10;
+		}])
+		.controller('oneController', ['$scope', function($scope){
+			console.log('oneController');
+			$scope.a = 20;
+	}])
+
+
+
+
+
+		angular.bootstrap(document.documentElement,['myApp'],{strictDi:true})
+
+	</script>
+
+</body>
+</html>

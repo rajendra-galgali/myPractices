@@ -1,0 +1,32 @@
+
+<div ng-controller="routeParamsController">
+    <div class="container">
+        <div class="row" >
+            <h1>Routers </h1>
+        </div>
+
+        <div>
+            <div class="row"
+                 style="height:600px; padding-top:100px;font-size: 30px">
+                <div class="col-sm-3">
+                    <ul>
+                        <li><a   href="" ui-sref="home">home</a></li>
+                        <li><a   href="" ui-sref="home.help">home/help</a></li>
+                        <li><a  href="" ui-sref="help">help</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-9"  style="background-color: white">
+                    <div ui-view="home"></div>
+                    <div ui-view="help"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" style="background-color: #4cae4c">
+            <h3>Footer</h3>
+        </div>
+    </div>
+</div>
+

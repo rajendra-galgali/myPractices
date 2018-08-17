@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	
+</head>
+<body ng-controller="myController">
+
+<input type="text" name="name" ng-model="obj.name" />
+<button ng-click="clickMe()">clickMe</button>
+
+{{name}}
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',[])
+	.controller('myController', function($scope){
+		console.log('myController');
+		$scope.obj = {
+			name: 'ehtesham'
+		}
+
+		$scope.clickMe = function(){
+			console.log('Value ' + $scope.obj.name);
+		}
+
+	} )
+
+</script>
+
+</body>
+</html>

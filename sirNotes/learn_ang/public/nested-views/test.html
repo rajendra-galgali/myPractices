@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="testModule">
+<head>
+	<title></title>
+	<h3>Welcome to test</h3>
+</head>
+<body ng-controller="testController">
+
+<div>
+	<div ui-view='uv1'></div>
+</div>
+
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript">
+
+	angular.module("testModule",['ui.router'])
+	.controller("testController",function(){
+		console.log("testController")
+	})
+	.config(['$stateProvider', function($stateProvider){
+		$stateProvider
+		.state('hello',{
+			url:'/hello',
+			views:{
+				'uv1':{
+					templateUrl:'/test/hello.html',
+					controller:function(){
+						console.log("hello 1 controller")
+					}
+				}
+			}
+		})
+		.state('hello.about',{
+			url:'/about',
+			views:{
+				'uv2':{
+					templateUrl:'/test/about.html',
+					controller:function(){
+						console.log("about 2 controller")
+					}
+				}
+			}
+		})
+		
+	}])
+</script>
+</body>
+</html>

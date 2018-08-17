@@ -1,0 +1,28 @@
+<div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th ng-click="sort('name')">NAME</th>
+            <th  ng-click="sort('id')">ID</th>
+            <th  ng-click="sort('age')">AGE</th>
+            <th ng-click="sort('location')">LOCATION</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="row in tableData |orderBy:name:reverse">
+        <tr ng-if="row.age < 50" class="danger">
+            <td >{{row.name}}</td>
+            <td>{{row.id}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.location}}</td>
+        </tr>
+        <tr ng-if="row.age >= 50" class="active">
+            <td>{{row.name}}</td>
+            <td>{{row.id}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.location}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>

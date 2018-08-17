@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	
+</head>
+<body>
+
+<div ng-controller="myAppController"></div>
+
+<div ng-controller="oneController"></div>
+
+<div ng-controller="twoController"></div>
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',['one','two'])
+	.controller('myAppController', function(){
+		console.log('myAppController')
+	})
+
+angular.module('one',[])
+	.controller('oneController', function(){
+		console.log('oneController')
+	})
+
+angular.module('two',[])
+	.controller('twoController', function(){
+		console.log('twoController')
+	})
+
+</script>
+
+</body>
+</html>

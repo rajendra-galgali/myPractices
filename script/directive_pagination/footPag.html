@@ -1,0 +1,9 @@
+<tfoot>
+<tr>
+    <!--<button ng-disabled="currentPage+1 == 1">previous</button>-->
+    <button ng-repeat="a in listArr">
+        <a ng-click="record($index)">{{a}}</a></button>
+    <!-- <button ng-click="nextdata(currentPage+1)">next</button>-->
+</tr>
+
+</tfoot>

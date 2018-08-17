@@ -1,0 +1,38 @@
+<div>
+    <table class="table table-bordered">
+        <input type="text" ng-model="search"/>
+        <thead>
+     {{tableData1.value}}
+        <tr>
+            <th  ng-repeat="a in tableHeader | orderBy:name:reverse" ng-click="sort(a)">{{a}}</th>
+            <!--  <th  ng-click="sort('id')">ID</th>
+              <th  ng-click="sort('age')">AGE</th>
+              <th ng-click="sort('location')">LOCATION</th>-->
+        </tr>
+        </thead>
+        <tbody ng-repeat="row in tableData1 | filter:search">
+        <tr ng-if="row.age < 50" class="danger">
+            <td ng-repeat="name in tableData1.value">row.{{name}}</td>
+           <!-- <td>{{row.id}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.location}}</td>-->
+        </tr>
+        <tr ng-if="row.age >= 50" class="active">
+            <td>{{row.name}}</td>
+            <td>{{row.id}}</td>
+            <td>{{row.age}}</td>
+            <td>{{row.location}}</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+</hr>
+<tfoot>
+
+<tr>
+    <button ng-repeat="a in listArr">
+        <a ng-click="record($index)">{{a}}</a></button>
+</tr>
+
+</tfoot>

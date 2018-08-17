@@ -1,0 +1,97 @@
+<div ng-controller="formValidationController">
+<form name="formName" class="form-horizontal" ng-submit="submitCheck(formName)" novalidate>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6 col-sm-offset-3" id="divmain">
+                    <div class="form-group" style="padding-top: 30px">
+                        <div ng-class="{'has-error':(enable && formName.email.$pristine)}">
+                            <label  required class=" control-label col-sm-2 ">Email</label>
+                            <div class="col-md-10 control-content">
+                                <input class="form-control" type="text" name="email" ng-model="model.email"   required/>
+                                <span ng-if="(enable && formName.email.$pristine) || (!formName.email.$pristine && formName.email.$invalid)"
+                                      class="help-block">Invalid</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div ng-class="{'has-error':(enable && formName.password.$pristine)}">
+                            <label class="control-label col-sm-2">Password</label>
+                            <div class="col-md-10">
+                                <input type="password" name="password" class="form-control" ng-model="model.password"
+                                       required/>
+                                <span ng-if="(enable && formName.password.$pristine) || (!formName.password.$pristine && formName.password.$invalid)"
+                                      class="help-block">Invalid</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 30px">
+                        <div class="radio">
+                            <div class="radio-inline col-md-12">
+                                <div ng-class="{'has-error':(enable && formName.gender.$invalid)}">
+                                    <label class="control-label col-sm-2 ">Gender</label>
+
+                                    <div class="col-md-2 ">
+                                        <input type="radio" name="gender" class="form-control" ng-model="model.gender"
+                                               value="Female" required/>
+                                    </div>
+                                    <label class="control-label col-md-2">FEMALE</label>
+                                    <div class="col-md-2 ">
+                                        <input type="radio" name="gender" class="form-control" ng-model="model.gender"
+                                               value="Male" required/>
+                                    </div>
+                                    <label class="control-label col-md-1 col-md-offset-1">MALE</label>
+
+                                </div>
+                            </div>
+                            <span ng-if="(formName.gender.$invalid && enable)" class="help-block">Invalid</span>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div ng-class="{'has-error':(enable && formName.countries.$invalid)}">
+                            <label class=" control-label col-sm-2 ">Country</label>
+                            <div class="col-md-4 col-md-offset-0">
+                                <select name="countries" class="form-control"
+                                        ng-options="country.code as country.name for country in countries"
+                                        ng-model="model.country.code" required>
+                                    <option value="">Select</option>
+                                </select>
+                                <span ng-if="(formName.countries.$invalid && enable)" class="help-block">Invalid</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div ng-class="{'has-error':(enable && checkenable)}">
+                            <label class="control-label col-sm-2 ">Language</label>
+                            <div class="col-md-3 checkbox-inline">
+                                <div ng-repeat="language in language"
+                                     ng-class="{'has-error':(enable && checkenable)}">
+                                    <label>{{language.name}}</label>
+                                    <div class="col-md-2 ">
+                                        <input type="checkbox" name="language{{$index}}" ng-model="selection.language[$index]"
+                                               ng-click="checkboxClick(formName['language'+$index].$viewValue, $index, language.code)"
+                                               ng-required="requried"/>
+                                    </div>
+                                </div>
+                                <span ng-if="checkenable && enable" class="help-block">Invalid</span>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button style="margin-bottom: 30px" type="submit" class="btn btn-success">sumit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+</div>
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyApp</title>
+	
+</head>
+<body ng-controller="myController">
+<h1>Two Bind</h1>
+
+<input type="text" name="name" ng-model="obj.name" />
+<button ng-click="clickMe()">clickMe</button>
+
+{{name}}
+
+<div ng-controller="oneController"></div>
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',[])
+	.controller('myController', ['$scope', function($scope){
+			console.log('myController');
+			$scope.obj = {
+				name: 'ehtesham'
+			}
+	
+			$scope.clickMe = function(){
+				console.log('Value ' + $scope.obj.name);
+			}
+	
+		}] )
+
+angular.module('oneApp',[])
+.controller('oneController', ['$scope', function($scope){
+	console.log('oneController')
+}])
+
+angular.bootstrap(document.documentElement, ['myApp', 'oneApp'],{strictDi: true})
+
+</script>
+
+</body>
+</html>

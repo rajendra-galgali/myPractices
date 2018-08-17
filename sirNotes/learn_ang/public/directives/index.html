@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<style type="text/css">
+		.has-error{
+			color: #FF0000;
+		}
+	</style>
+</head>
+<body ng-controller="myController">
+	<div class="container">
+		<div class="col-md-12">
+			{{a}}
+			<div my-dir></div>
+			
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('myApp',[])
+		.controller('myController', function($scope){
+			console.log('myController');
+			$scope.a = 10;
+		})
+		.directive('myDir', function(){
+			return {
+				restrict: 'A',
+				replace: true,
+				template: '<h3>My Directive Temp - {{a}}</h3>',
+				controller: function($scope){
+					$scope.a = 25;
+				}
+			}
+		})
+
+	</script>
+
+</body>
+</html>

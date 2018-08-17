@@ -1,0 +1,29 @@
+<div ng-controller="routeController">
+    <div class="container">
+        <div class="row" style="background-color: #2aabd2">
+            <h1 style="text-align: center">Routers </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" style="height:600px; background-color: #c0a16b; padding-top:100px;font-size: 30px">
+                <ul>
+                    <li><a   href="" ui-sref="book">Book</a></li>
+                    <li><a  href="" ui-sref="admin.help">1stchild</a></li>
+                    <li><a  href="" ui-sref="admin.sibbling">2ndchild</a></li>
+                    <!-- <li><a  href="" ui-sref="admin.help">help</a></li>-->
+                    <li><a  href="" ui-sref="admin.help.child">child</a></li>
+                </ul>
+            </div>
+
+            <div  ui-view="uv4">
+                <div class="col-sm-9">
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row" style="background-color: #4cae4c">
+            <h3>Footer</h3>
+        </div>
+    </div>
+</div>

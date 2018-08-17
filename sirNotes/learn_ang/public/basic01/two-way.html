@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	
+</head>
+<body ng-controller="myController">
+<h1>Two Bind</h1>
+
+<input type="text" name="name" ng-model="name" />
+<button ng-click="clickMe()">clickMe</button>
+
+{{name}}
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',[])
+	.controller('myController', function($scope){
+		console.log('myController');
+		$scope.name="alpha";
+
+		$scope.clickMe = function(){
+			console.log('Value ' + $scope.name);
+		}
+
+	} )
+
+</script>
+
+</body>
+</html>

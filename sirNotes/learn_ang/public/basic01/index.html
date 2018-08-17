@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	
+</head>
+<body ng-controller="myController">
+<h1>{{a}}</h1>
+
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',[])
+	.controller('myController', function($scope){
+		console.log('myController');
+		$scope.a = 10;
+	} )
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<div ng-controller="mythirdControllerProvider">
+    <input type="text" ng-model="dataSearch" class="form-control" placeholder="search By name"/>
+    <div class="table-responsive" id="divtable">
+        <table class="table">
+            <thead>
+            <tr>
+               <!-- <th>
+                    <button ng-click="sortBy('name')">NAME</button>
+                    <span class="sortorder"></span>
+                </th>
+                <th>
+                    <button ng-click="sortBy('id')">ID</button>
+                    <span class="sortorder"></span>
+                </th>
+                <th>
+                    <button ng-click="sortBy('location')">LOCATION</button>
+                    <span class="sortorder"></span>
+                </th>-->
+                <th>NAME</th>
+                <th>ID</th>
+                <th>LOCATION</th>
+
+            </tr>
+            </thead>
+
+            <tbody ng-repeat="data in empList  track by $index| limitTo: 12 | filter : dataSearch">
+
+            <tr ng-if="data.id != (4 || 8)" class="success">
+                <td>{{data.name  | uppercase}}</td>
+                <td>{{data.id}}</td>
+                <td>{{data.location}}</td>
+                <td>
+                    <i class="col-sm-1 glyphicon glyphicon-pencil" ng-click="editData($index)"></i>
+                    <i class="col-sm-2 glyphicon glyphicon-trash" ng-click="deleteRowdata($index)"></i>
+                </td>
+            </tr>
+
+            <tr ng-if="data.id == (4 || 8)" class="danger">
+                <td>{{data.name | uppercase}}</td>
+                <td>{{data.id}}</td>
+                <td>{{data.location}}</td>
+                <td>
+                    <i class="col-sm-1 glyphicon glyphicon-pencil" ng-click="editData($index)"></i>
+                    <i class="col-sm-2 glyphicon glyphicon-trash" ng-click="deleteRowdata($index)"></i>
+                </td>
+            </tr>
+
+            <tr ng-if="enable === true" >
+                <td >
+                    <input type="text"  ng-model="data.name" />
+                    <input type="text"  ng-model="data.id" />
+                    <input type="text"  ng-model="data.location" />
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div> date{{ today | date  : "longDate"}}</div>
+    <div>
+        Number filter
+    <input type="text" ng-model="number" />{{number | number : 2}}
+    </div>
+</div>

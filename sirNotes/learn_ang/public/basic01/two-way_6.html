@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyApp</title>	
+</head>
+<body>
+	<div ng-controller="myAppController">
+
+		{{a}}
+
+	</div>
+
+{{a}}
+
+
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		
+		var app = angular.module('myApp',[])
+		
+		app.controller('myAppController', ['$rootScope', function($rootScope){
+			console.log('myAppController');
+			$rootScope.a = 100;
+		}])
+		
+		app.config([function(){
+			console.log('config')
+		}])
+
+		app.run(['$rootScope',function($rootScope){
+			console.log('run');
+			$rootScope.a = 10;
+		}])
+		
+		angular.bootstrap(document.documentElement,['myApp'],{strictDi:true});
+
+		
+
+	</script>
+
+</body>
+</html>

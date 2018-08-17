@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Router</title>
+	<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-controller="myController">
+<div class="container">
+	<div class="row">
+		<h1>Header</h1>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"  style="height:500px">
+			<ul>
+				<li><a href="" ui-sref="index">home</a></li>
+				<li><a href="" ui-sref="users">users</a></li>
+				<li><a href="" ui-sref="admin">admin</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9">
+			<div ui-view></div>
+		</div>
+	</div>
+	<div class="row">
+		<h3>Footer</h3>
+	</div>
+</div>
+
+<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript">
+	angular.module('myApp', ['ui.router'])
+	.controller('myController', [function(){
+		console.log('myController')
+	}])
+	.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+		console.log('config');
+		$stateProvider
+			.state('index', {
+				url:'/index',
+				templateUrl: 'main.html',
+				controller:'mainController'
+			})
+			.state('admin', {
+				url:'/admin',
+				templateUrl: 'admin.html'
+			})
+			.state('users', {
+				url:'/users',
+				templateUrl: 'users.html'
+			})
+		$urlRouterProvider.otherwise('index');
+	}])
+	.controller('mainController', [function(){
+		console.log('mainController')
+	}])
+
+	angular.bootstrap(document.documentElement, ['myApp'], {strictDi:true})
+</script>
+</body>
+</html>

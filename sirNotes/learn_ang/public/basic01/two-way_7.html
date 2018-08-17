@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>MyApp</title>
+	<link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />
+</head>
+<body ng-controller="myController">
+
+<div class="container">
+	<div class="col-md-12">
+		<form ng-submit="submit()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" placeholder="Email" ng-model="model.email" />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" placeholder="Password" ng-model="model.password" />
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+angular.module('myApp',[])
+	.controller('myController', function($scope){
+		console.log('myController');
+		$scope.model = {
+			email:'',
+			password: ''
+		}
+
+		$scope.submit = function(){
+			console.log($scope.model);
+		}
+	} )
+
+</script>
+
+</body>
+</html>
