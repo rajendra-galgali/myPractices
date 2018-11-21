@@ -1,10 +1,18 @@
-
-var add = (function() {
-    var c = 0;
-    return function () {
-        return c +=1;
+'use strict';
+var empDetails = (function () {
+    let empObj = {
+        "name" : "",
+        "age" : ""
     }
-})()
-console.log(add());
-console.log(add());
-console.log(add());
+    console.log("in ",this)
+    return function () {
+        console.log(this);
+        empObj = {
+            "name" : "rajendra",
+            "age" : "25"
+        }
+        return empObj;
+    }
+})();
+
+console.log(empDetails ());

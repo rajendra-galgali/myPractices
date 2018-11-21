@@ -14,11 +14,15 @@
 					url: '/home',
 					template: "<h1> rajendra </h1>"
 				})
+				.state('about', {
+					url: '/about',
+					template:"<h2> about </h2>"
+				})
 		}])
 	</script>
 
-	<a href="#!/home">home</a>
-	 <a ui-sref="home">State 1</a>
+	<!-- <a href="#!/home">home</a>
+	 <a ui-sref="home">State 1</a> -->
 	<div ui-view></div>
 </body>
 </html>
